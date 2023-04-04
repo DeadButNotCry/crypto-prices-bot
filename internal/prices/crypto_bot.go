@@ -6,8 +6,17 @@ import (
 )
 
 type CryptoBotPriceService struct {
-	client      cryptobot.Client
-	redisClient redis.Client
+	cryptoBotClient *cryptobot.Client
+	redisClient     *redis.Client
 }
 
-func CryptoBot(apiKey string)
+func NewCryptoBotPricrService(apiKey string, redisClient *redis.Client) *CryptoBotPriceService {
+	return &CryptoBotPriceService{
+		cryptoBotClient: cryptobot.NewClient(cryptobot.Options{
+			APIToken: apiKey,
+		}),
+		redisClient: redisClient,
+	}
+}
+
+
