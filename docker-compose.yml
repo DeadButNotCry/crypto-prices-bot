@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+    redis:
+        image: redis
+        ports:
+            - '6379:6379'
+        command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASS}
+        volumes:
+            - cache:/data
+    db:
+        image: postgres:latest
+        restart: always
+        env_file:
+            - .env
+        ports:
+            - '5432:5432'
+        volumes:
+            - data:/var/lib/postgresql/data
+    server:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        env_file: .env
+        depends_on:
+            - redis
+            - db
+        networks:
+            - default
+volumes:
+    data:
+    cache:
