@@ -18,5 +18,3 @@ func NewCryptoBotPricrService(apiKey string, redisClient *redis.Client) *CryptoB
 		redisClient: redisClient,
 	}
 }
-
-
