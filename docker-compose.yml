@@ -10,6 +10,11 @@ services:
             - .env
         volumes:
             - cache:/data
+        healthcheck:
+            test: [ "CMD", "redis-cli", "ping" ]
+            interval: 1s
+            timeout: 3s
+            retries: 30
     db:
         image: postgres:latest
         restart: always
@@ -22,7 +27,7 @@ services:
             - ./migrations/initdb.sql:/docker-entrypoint-initdb.d/intidb.sql
         healthcheck:
             test: [ "CMD-SHELL", "pg_isready" ]
-            interval: 10s
+            interval: 10s 
             timeout: 5s
             retries: 10
     bot:
@@ -35,6 +40,7 @@ services:
             db:
                 condition: service_healthy
             redis:
+                condition: service_healthy
 volumes:
     data:
     cache:
