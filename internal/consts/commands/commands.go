@@ -1,14 +1,14 @@
 package commands
 
 // Crypto commands
-var (
-	BTC  = "BTC"
-	ETH  = "ETH"
-	TON  = "TON"
-	USDT = "USDT"
-	USDC = "USDC"
-	BUSD = "BUSD"
-)
+var CRYPTO = []string{
+	"BTC",
+	"ETH",
+	"TON",
+	"USDT",
+	"BUSD",
+	"USDC",
+}
 
 // Admin commands
 

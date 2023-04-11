@@ -2,8 +2,9 @@ package states
 
 // Simple user states
 var (
+	// Default user state after basic setting
 	ChooseTheCrypto   = "STATE:CHOOSE_THE_CRYPTO"
-	InputAmount       = "STATE:INPUT_AMOUNT"
+	InputAmount       = "STATE:INPUT_AMOUNT:%"
 	ChooseTheLanguage = "STATE:CHOOSE_THE_LANGUAGE"
 )
 
